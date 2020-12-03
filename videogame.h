@@ -34,4 +34,5 @@ class VideoGame
             return v;
         }
 };
+
 #endif

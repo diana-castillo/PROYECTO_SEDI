@@ -2,7 +2,9 @@
 #include <fstream>
 #include <algorithm>
 
-VideoGame::VideoGame() { }
+VideoGame::VideoGame() {
+    nombreUsuario = "*****";
+}
 
 void VideoGame::setNombreUsuario(const string &v) {
     nombreUsuario = v;

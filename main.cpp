@@ -10,9 +10,12 @@ int main() {
     size_t n;
     string nombre;
     Civilizacion *ptr;
+    Aldeano a;
+    Aldeano *ptrA;
     int aux;
     do {
-        cout<<endl<<"1) Nombre de Usuario"<<endl;
+        cout<<endl<<"Nombre de usuario: "<<vg.getNombreUsuario()<<endl;
+        cout<<"1) Nombre de Usuario"<<endl;
         cout<<"2) Agregar civilizacion"<<endl;
         cout<<"3) Insertar civilizacion"<<endl;
         cout<<"4) Crear civilizaciones"<<endl;
@@ -20,7 +23,7 @@ int main() {
         cout<<"6) Ultima civilizacion"<<endl;
         cout<<"7) Ordenar"<<endl;
         cout<<"8) Eliminar civilizacion"<<endl;
-        cout<<"9) Buscar"<<endl;
+        cout<<"9) Buscar civilizacion"<<endl;
         cout<<"10) Modificar"<<endl;
         cout<<"11) Resumen"<<endl;
         cout<<"12) Salir"<<endl;
@@ -62,6 +65,7 @@ int main() {
             case 5:
                 if(vg.total() > 0) {
                     c = vg.primeraCivilizacion();
+                    cout<<left<<setw(11)<<"NOMBRE"<<setw(17)<<"UBICACION EN X"<<setw(17)<<"UBICACION EN Y"<<setw(6)<<"PUNTUACION"<<endl;
                     cout<<c;
                 }
                 else
@@ -71,6 +75,7 @@ int main() {
             case 6:
                 if(vg.total() > 0) {
                     c = vg.ultimaCivilizacion();
+                    cout<<left<<setw(11)<<"NOMBRE"<<setw(17)<<"UBICACION EN X"<<setw(17)<<"UBICACION EN Y"<<setw(6)<<"PUNTUACION"<<endl;
                     cout<<c;
                 }
                 else
@@ -122,8 +127,180 @@ int main() {
                 if(ptr == nullptr)
                     cout<<"No encontrado"<<endl;
                 
-                else
+                else {
+                    cout<<left<<setw(11)<<"NOMBRE"<<setw(17)<<"UBICACION EN X"<<setw(17)<<"UBICACION EN Y"<<setw(6)<<"PUNTUACION"<<endl;
                     cout<<*ptr<<endl;
+                    do{
+                        cout<<"1) Agregar aldeano"<<endl;
+                        cout<<"2) Eliminar aldeano"<<endl;
+                        cout<<"3) Clasificar aldeanos"<<endl;
+                        cout<<"4) Buscar aldeano"<<endl;
+                        cout<<"5) Modificar aldeano"<<endl;
+                        cout<<"6) Mostrar aldeanos"<<endl;
+                        cout<<"7) Salir"<<endl;
+                        cin>>op;
+                        cin.ignore();
+                        switch (op) {
+                        case 1:
+                            cin>>a;
+                            cout<<"1) Agregar aldeano al inicio"<<endl;
+                            cout<<"2) Agregar aldeano al final"<<endl;
+                            cin>>op;
+                            cin.ignore();
+                            switch (op) {
+                            case 1:
+                                c.agregarAldeanoInicio(a);
+                                ptr->setPuntuacion(ptr->getPuntuacion()+100);
+                                break;
+
+                            case 2:
+                                c.agregarAldeanoFinal(a);
+                                ptr->setPuntuacion(ptr->getPuntuacion()+100);
+                                break;
+                            
+                            default:
+                                cout<<"Opcion no valida"<<endl;
+                                break;
+                            }
+                            break;
+
+                        case 2:
+                            cout<<"1) Eliminar por nombre"<<endl;
+                            cout<<"2) Eliminar aldeanos donde su salud sea menor a x"<<endl;
+                            cout<<"3) Eliminar aldeanos donde su edad sea mayor igual a 60"<<endl;
+                            cin>>op;
+                            cin.ignore();
+                            switch (op) {
+                            case 1:
+                                cout<<"Nombre: ";
+                                getline(cin, nombre);
+                                c.eliminarPorNombre(nombre);
+                                cout<<endl;
+                                break;
+                            
+                            case 2:
+                                cout<<"x: ";
+                                cin>>aux;
+                                cin.ignore();
+                                c.eliminarPorSalud(aux);
+                                cout<<endl;
+                                break;
+
+                            case 3:
+                                c.eliminarPorEdad();
+                                break;
+
+                            default:
+                                cout<<"Opcion no valida"<<endl;
+                                break;
+                            }
+                            break;
+
+                        case 3:
+                            cout<<"1) Clasificar lista de aldeanos por nombre"<<endl;
+                            cout<<"2) Clasificar lista de aldeanos por edad"<<endl;
+                            cout<<"3) Clasificar lista de aldeanos por salud"<<endl;
+                            cin>>op;
+                            cin.ignore();
+                            switch (op) {
+                            case 1:
+                                c.ordenarPorNombre();
+                                break;
+                            
+                            case 2:
+                                c.ordenarPorEdad();
+                                break;
+                            
+                            case 3:
+                                c.ordenarPorSalud();
+                                break;
+                            
+                            default:
+                                cout<<"Opcion no valida"<<endl;
+                                break;
+                            }
+                            break;
+
+                        case 4:
+                            cout<<"Nombre: ";
+                            getline(cin, nombre);
+                            a.setNombre(nombre);
+                            ptrA = c.buscarAldeano(a);
+                            
+                            if(ptrA == nullptr)
+                                cout<<"No encontrado"<<endl;
+                            
+                            else
+                                cout<<left<<setw(11)<<"NOMBRE"<<setw(10)<<"EDAD"<<setw(10)<<"GENERO"<<setw(6)<<"SALUD"<<endl;
+                                cout<<*ptrA<<endl;
+                            break;
+
+                        case 5:
+                            cout<<"Nombre: ";
+                            getline(cin, nombre);
+                            a.setNombre(nombre);
+                            ptrA = c.buscarAldeano(a);
+                            
+                            if(ptrA == nullptr)
+                                cout<<"No encontrado"<<endl;
+                            
+                            else {
+                                cout<<left<<setw(11)<<"NOMBRE"<<setw(10)<<"EDAD"<<setw(10)<<"GENERO"<<setw(6)<<"SALUD"<<endl;
+                                cout<<*ptrA<<endl;
+                                cout<<"1) Modificar nombre"<<endl;
+                                cout<<"2) Modificar edad"<<endl;
+                                cout<<"3) Modificar genero"<<endl;
+                                cout<<"4) Modificar salud"<<endl;
+                                cin>>op;
+                                cin.ignore();
+                                switch (op) {
+                                case 1:
+                                    cout<<"Nuevo nombre: ";
+                                    getline(cin, nombre);
+                                    ptrA->setNombre(nombre);
+                                    cout<<endl;
+                                    break;
+                                
+                                case 2:
+                                    cout<<"Nueva edad: ";
+                                    cin>>aux;
+                                    cin.ignore();
+                                    ptrA->setEdad(aux);
+                                    cout<<endl;
+                                    break;
+                                
+                                case 3:
+                                    cout<<"Nuevo genero: ";
+                                    getline(cin, nombre);
+                                    ptrA->setGenero(nombre);
+                                    cout<<endl;
+                                    break;
+                                
+                                case 4:
+                                    cout<<"Nueva salud: ";
+                                    cin>>aux;
+                                    cin.ignore();
+                                    ptrA->setSalud(aux);
+                                    cout<<endl;
+                                    break;
+                                
+                                default:
+                                    cout<<"Opcion no valida"<<endl;
+                                    break;
+                                }
+                            }
+                            break;
+
+                        case 6:
+                            c.mostrarAldeanos();
+                            break;
+                        
+                        default: 
+                            break;
+                        }
+                    }
+                    while(op != 7);
+                }
                 break;
 
             case 10:
@@ -136,6 +313,7 @@ int main() {
                     cout<<"No encontrado"<<endl;
                 
                 else {
+                    cout<<left<<setw(11)<<"NOMBRE"<<setw(17)<<"UBICACION EN X"<<setw(17)<<"UBICACION EN Y"<<setw(6)<<"PUNTUACION"<<endl;
                     cout<<*ptr<<endl;
                     cout<<"1) Modificar nombre"<<endl;
                     cout<<"2) Modificar posicion en x"<<endl;
