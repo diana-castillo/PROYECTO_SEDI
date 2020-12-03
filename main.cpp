@@ -27,6 +27,8 @@ int main() {
         cout<<"10) Modificar"<<endl;
         cout<<"11) Resumen"<<endl;
         cout<<"12) Salir"<<endl;
+        cout<<"13) Respaldar"<<endl;
+        cout<<"14) Recuperar"<<endl;
         cin>>op;
         cin.ignore();
 
@@ -143,18 +145,18 @@ int main() {
                         switch (op) {
                         case 1:
                             cin>>a;
-                            cout<<"1) Agregar aldeano al inicio"<<endl;
+                            cout<<endl<<"1) Agregar aldeano al inicio"<<endl;
                             cout<<"2) Agregar aldeano al final"<<endl;
                             cin>>op;
                             cin.ignore();
                             switch (op) {
                             case 1:
-                                c.agregarAldeanoInicio(a);
+                                ptr->agregarAldeanoInicio(a);
                                 ptr->setPuntuacion(ptr->getPuntuacion()+100);
                                 break;
 
                             case 2:
-                                c.agregarAldeanoFinal(a);
+                                ptr->agregarAldeanoFinal(a);
                                 ptr->setPuntuacion(ptr->getPuntuacion()+100);
                                 break;
                             
@@ -174,7 +176,7 @@ int main() {
                             case 1:
                                 cout<<"Nombre: ";
                                 getline(cin, nombre);
-                                c.eliminarPorNombre(nombre);
+                                ptr->eliminarPorNombre(nombre);
                                 cout<<endl;
                                 break;
                             
@@ -182,12 +184,12 @@ int main() {
                                 cout<<"x: ";
                                 cin>>aux;
                                 cin.ignore();
-                                c.eliminarPorSalud(aux);
+                                ptr->eliminarPorSalud(aux);
                                 cout<<endl;
                                 break;
 
                             case 3:
-                                c.eliminarPorEdad();
+                                 ptr->eliminarPorEdad();
                                 break;
 
                             default:
@@ -204,15 +206,15 @@ int main() {
                             cin.ignore();
                             switch (op) {
                             case 1:
-                                c.ordenarPorNombre();
+                                 ptr->ordenarPorNombre();
                                 break;
                             
                             case 2:
-                                c.ordenarPorEdad();
+                                 ptr->ordenarPorEdad();
                                 break;
                             
                             case 3:
-                                c.ordenarPorSalud();
+                                 ptr->ordenarPorSalud();
                                 break;
                             
                             default:
@@ -225,7 +227,7 @@ int main() {
                             cout<<"Nombre: ";
                             getline(cin, nombre);
                             a.setNombre(nombre);
-                            ptrA = c.buscarAldeano(a);
+                            ptrA =  ptr->buscarAldeano(a);
                             
                             if(ptrA == nullptr)
                                 cout<<"No encontrado"<<endl;
@@ -239,7 +241,7 @@ int main() {
                             cout<<"Nombre: ";
                             getline(cin, nombre);
                             a.setNombre(nombre);
-                            ptrA = c.buscarAldeano(a);
+                            ptrA =  ptr->buscarAldeano(a);
                             
                             if(ptrA == nullptr)
                                 cout<<"No encontrado"<<endl;
@@ -292,7 +294,7 @@ int main() {
                             break;
 
                         case 6:
-                            c.mostrarAldeanos();
+                            ptr->mostrarAldeanos();
                             break;
                         
                         default: 
@@ -362,6 +364,14 @@ int main() {
 
             case 12:
                 cout<<"Hasta luego"<<endl<<endl;
+                break;
+
+            case 13:
+                vg.respaldar();
+                break;
+            
+            case 14:
+                vg.recuperar();
                 break;
 
             default:

@@ -67,4 +67,5 @@ class Aldeano
             return nombre < a.nombre;
         }
 };
+
 #endif

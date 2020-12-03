@@ -4,8 +4,10 @@
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
-#include "aldeano.h"
+#include <fstream>
 #include <list>
+
+#include "aldeano.h"
 
 using namespace std;
 
@@ -49,6 +51,11 @@ class Civilizacion
 
         void mostrarAldeanos();
 
+        void respaldarAldeanos();
+        void recuperarAldeanos();
+
+        void anular();
+
         friend ostream& operator<<(ostream &out, const Civilizacion &c) {
             out<< left;
             out<< setw(11) <<c.nombre;
@@ -83,6 +90,11 @@ class Civilizacion
         }
         bool operator<(const Civilizacion& c) const {
             return nombre < c.nombre;
+        }
+
+        friend Civilizacion& operator<<(Civilizacion &c, const Aldeano &a) {
+            c.agregarAldeanoFinal(a);
+            return c;
         }
 };
 #endif

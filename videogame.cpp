@@ -27,6 +27,55 @@ void VideoGame::mostrar() {
     } 
 }
 
+void VideoGame::respaldar() {
+    ofstream archivo("civilizaciones.txt", ios::out);
+    if (archivo.is_open())
+        for(size_t i=0; i<civilizaciones.size(); i++) {
+            Civilizacion &c = civilizaciones[i];
+            archivo<<c.getNombre()<<endl;
+            archivo<<c.getUbicacionEnX()<<endl;
+            archivo<<c.getUbicacionEnY()<<endl;
+            archivo<<c.getPuntuacion()<<endl;
+            c.respaldarAldeanos();
+        }
+    archivo.close();
+}
+
+void VideoGame::recuperar() {
+    ifstream archivo("civilizaciones.txt");
+    if (archivo.is_open()) {
+        string temp;
+        int aux;
+        Civilizacion c;
+
+        while(true) {
+            getline(archivo, temp);
+            if(archivo.eof()) {
+                break;
+            }
+            c.setNombre(temp);
+
+            getline(archivo, temp);
+            aux = stoi(temp);
+            c.setUbicacionEnX(aux);
+
+            getline(archivo, temp);
+            aux = stoi(temp);
+            c.setUbicacionEnY(aux);
+
+            getline(archivo, temp);
+            aux = stoi(temp);
+            c.setPuntuacion(aux);
+
+            c.recuperarAldeanos();
+            agregarCivilizacion(c);
+            
+            c.anular();
+        }
+    }
+    archivo.close();
+}
+
 void VideoGame::agregarCivilizacion(const Civilizacion &c) {
     civilizaciones.push_back(c);
 }

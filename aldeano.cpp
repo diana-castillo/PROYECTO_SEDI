@@ -2,8 +2,7 @@
 
 Aldeano::Aldeano() { }
 
-Aldeano::Aldeano(const string &nombre, const int &edad, const string &genero, const int &salud)
-{
+Aldeano::Aldeano(const string &nombre, const int &edad, const string &genero, const int &salud) {
     this->nombre = nombre;
     this->edad = edad;
     this->genero = genero;

@@ -16,6 +16,8 @@ class VideoGame
         string getNombreUsuario();
 
         void mostrar();
+        void respaldar();
+        void recuperar();
         void agregarCivilizacion(const Civilizacion&);
         void insertar(const Civilizacion&, size_t);
         void inicializar(const Civilizacion&, size_t);
@@ -34,5 +36,4 @@ class VideoGame
             return v;
         }
 };
-
 #endif
